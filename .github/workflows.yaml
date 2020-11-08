@@ -1,0 +1,14 @@
+name: Workflows with large secrets
+
+on: push
+
+jobs:
+  my-job:
+    name: My Job
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Decrypt large secret
+        run: ./.github/scripts/remote-query.sh
+        env:
+          MY_TEST_SECRET: ${{ secrets.MY_TEST_SECRET }}
